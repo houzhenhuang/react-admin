@@ -19,7 +19,19 @@ request.interceptors.response.use(
         return res.data;
     },
     error => {
-        return error.response.data;
+        const { response } = error;
+
+        if (!response || response.status === 504) {
+            const result: IResponse<null> = {
+                isSuccess: false,
+                message: response?.data || "服务器断开啦",
+                code: "",
+                data: null
+            };
+            return result;
+        }
+
+        return response.data;
     });
 
 export default request;
