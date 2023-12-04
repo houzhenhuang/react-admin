@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, MenuProps } from 'antd';
 
 import './index.scss'
 import {
@@ -37,6 +37,7 @@ function AppLayoutSidebar(props: { collapsed: boolean }) {
     navigate(e.key)
   }
 
+  type MenuItem = Required<MenuProps>['items'][number];
   const menuItems: MenuItem[] = [
     getMenuItem('Home', '/', <PieChartOutlined />),
     getMenuItem('About', '/about', <DesktopOutlined />),
