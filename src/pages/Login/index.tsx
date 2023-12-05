@@ -3,6 +3,8 @@ import { doLogin } from '../../api/login';
 import './login.scss';
 import { setToken } from '../../utils/token';
 import { useNavigate } from "react-router-dom";
+import { getMenus } from '../../api/menu';
+import { setUserMenus } from '../../utils/menu';
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -11,7 +13,11 @@ const Login: React.FC = () => {
         doLogin(loginRequest).then(res => {
             if (res.isSuccess) {
                 setToken(res.data.token);
-                navigate("/");
+
+                getMenus().then(res => {
+                    setUserMenus(res);
+                    navigate("/");
+                })
             } else {
                 message.error(res.message);
             }

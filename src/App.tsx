@@ -1,10 +1,17 @@
+import React from 'react';
 import './App.css';
-import Login from './pages/Login';
+import Layout from './pages/Layout';
+import { BrowserRouter } from 'react-router-dom';
+import DynamicRouter from './components/DynamicRouter';
 
 function App() {
   return (
     <>
-      <Login />
+      <React.Suspense>
+        <BrowserRouter>
+          <DynamicRouter></DynamicRouter>
+        </BrowserRouter>
+      </React.Suspense>
     </>
   );
 }

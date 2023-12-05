@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -12,10 +11,12 @@ import './index.scss'
 import { removeToken } from "../../../../utils/token";
 
 const { Header } = Layout;
-function AppLayoutHeader() {
+function AppLayoutHeader(props: { collapsed: boolean, setCollapsed: Function }) {
+
+  const { collapsed, setCollapsed } = props;
 
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();

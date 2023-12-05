@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, MenuProps } from 'antd';
+import { getMenus, addIconToMenu } from "../../../../api/menu";
 
 import './index.scss'
-import {
-  UserOutlined,
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-} from '@ant-design/icons';
+import { getUserMenus } from '../../../../utils/menu';
 
 const { Sider } = Layout;
 
@@ -19,36 +14,18 @@ function AppLayoutSidebar(props: { collapsed: boolean }) {
 
   const navigate = useNavigate();
 
-  const getMenuItem = (
-    label: React.ReactNode,
-    key: React.Key,
-    icon?: React.ReactNode,
-    children?: MenuItem[],
-  ): MenuItem => {
-    return {
-      key,
-      icon,
-      children,
-      label,
-    } as MenuItem;
-  }
+  const [menus, setMenus] = useState<MenuItem[]>([]);
+
+  useEffect(() => {
+    const userMenus = getUserMenus();
+    setMenus(addIconToMenu(userMenus));
+  });
 
   const menuClick = (e: any) => {
     navigate(e.key)
   }
 
   type MenuItem = Required<MenuProps>['items'][number];
-  const menuItems: MenuItem[] = [
-    getMenuItem('Home', '/', <PieChartOutlined />),
-    getMenuItem('About', '/about', <DesktopOutlined />),
-    getMenuItem('User', 'sub1', <UserOutlined />, [
-      getMenuItem('Tom', '3'),
-      getMenuItem('Bill', '4'),
-      getMenuItem('Alex', '5'),
-    ]),
-    getMenuItem('Team', 'sub2', <TeamOutlined />, [getMenuItem('Team 1', '6'), getMenuItem('Team 2', '8')]),
-    getMenuItem('Files', '9', <FileOutlined />),
-  ];
 
   return (
     <>
@@ -62,8 +39,8 @@ function AppLayoutSidebar(props: { collapsed: boolean }) {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['1']}
-          items={menuItems}
+          defaultSelectedKeys={['/']}
+          items={menus}
           onClick={menuClick}
         />
       </Sider>
