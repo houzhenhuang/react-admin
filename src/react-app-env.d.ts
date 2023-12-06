@@ -8,6 +8,16 @@ declare global {
     code: string,
     data: T
   }
+
+  interface AppRoute {
+    index?: boolean,
+    path: string,
+    fullPath: string,
+    isAuth: boolean,
+    element?: JSX.Element,
+    children?: AppRoute[]
+  }
+
 }
 
 export { };

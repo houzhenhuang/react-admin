@@ -33,8 +33,18 @@ export const getMenus = (): Promise<any[]> => {
               key: "/user/bill"
             },
             {
-              label: "Alex",
-              key: "/user/alex"
+              label: "Alex1",
+              key: "/user/alex1",
+              children: [
+                {
+                  label: "Bill1",
+                  key: "/user/bill1"
+                },
+                {
+                  label: "Alex1",
+                  key: "/user/alex1"
+                }
+              ]
             }
           ]
         },

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { message } from "antd";
 
 const request = axios.create({
     timeout: 3000

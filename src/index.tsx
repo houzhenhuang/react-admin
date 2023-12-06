@@ -2,11 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, RouterProvider } from "react-router-dom";
-import router from "./router/index";
-// import store from "./store";
-import { Provider } from "react-redux";
-import DynamicRouter from './components/DynamicRouter';
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -14,10 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
     <App />
-    {/* <RouterProvider router={router} /> */}
-    {/* </Provider> */}
   </React.StrictMode>
 );
 

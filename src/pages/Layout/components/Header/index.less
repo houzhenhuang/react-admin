@@ -13,10 +13,10 @@
     height: 48px;
     justify-content: center;
     cursor: pointer;
-  }
 
-  .menu-fold:hover {
-    color: #1677ff;
+    &:hover {
+      color: #1677ff;
+    }
   }
 
   .app-layout-header-info {
@@ -30,8 +30,10 @@
     .app-layout-header-right {
       gap: 8px;
 
-      .ant-space-item:hover {
-        background-color: rgb(245, 245, 245);
+      .ant-space-item {
+        &:hover {
+          background-color: rgb(245, 245, 245);
+        }
       }
 
       .app-layout-header-right-account {

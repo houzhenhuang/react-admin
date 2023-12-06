@@ -7,13 +7,12 @@ import {
   LogoutOutlined
 } from '@ant-design/icons';
 import { Layout, theme, MenuProps, Space, Dropdown, Avatar } from 'antd';
-import './index.scss'
-import { removeToken } from "../../../../utils/token";
+import './index.less'
+import { removeToken } from "@/utils/token";
+import { removeUserMenus } from "@/utils/menu";
 
 const { Header } = Layout;
-function AppLayoutHeader(props: { collapsed: boolean, setCollapsed: Function }) {
-
-  const { collapsed, setCollapsed } = props;
+function AppLayoutHeader({ collapsed, setCollapsed }: any) {
 
   const navigate = useNavigate();
 
@@ -23,6 +22,7 @@ function AppLayoutHeader(props: { collapsed: boolean, setCollapsed: Function }) 
 
   const logout = () => {
     removeToken();
+    removeUserMenus();
     navigate("/login");
   }
 

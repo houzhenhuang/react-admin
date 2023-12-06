@@ -1,27 +1,27 @@
 import { Button, Checkbox, Form, Input, message } from 'antd'
-import { doLogin } from '../../api/login';
-import './login.scss';
-import { setToken } from '../../utils/token';
+import { doLogin } from '@/apis/login';
+import './login.less';
+import { setToken } from '@/utils/token';
 import { useNavigate } from "react-router-dom";
-import { getMenus } from '../../api/menu';
-import { setUserMenus } from '../../utils/menu';
+import { getMenus } from '@/apis/menu';
+import { setUserMenus } from '@/utils/menu';
+
+import loginBgVideo from "@/assets/videos/login-bg-video.mp4";
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
 
-    const login = (loginRequest: LoginRequest) => {
-        doLogin(loginRequest).then(res => {
-            if (res.isSuccess) {
-                setToken(res.data.token);
+    const login = async (loginRequest: LoginRequest) => {
+        const res = await doLogin(loginRequest);
+        if (res.isSuccess) {
+            setToken(res.data.token);
 
-                getMenus().then(res => {
-                    setUserMenus(res);
-                    navigate("/");
-                })
-            } else {
-                message.error(res.message);
-            }
-        });
+            const menus = await getMenus();
+            setUserMenus(menus);
+            navigate("/");
+        } else {
+            message.error(res.message);
+        }
     };
 
     return (
@@ -29,7 +29,7 @@ const Login: React.FC = () => {
             <div className='login-body'>
                 <div className='login-container'>
                     <div className='login-video'>
-                        <video src="./login-bg-video.mp4" muted autoPlay loop></video>
+                        {/* <video src={loginBgVideo} muted autoPlay loop></video> */}
                     </div>
                     <div className='login-box'>
                         <div className="logo">

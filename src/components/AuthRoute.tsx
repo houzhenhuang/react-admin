@@ -1,4 +1,4 @@
-import { getToken } from '../utils/token';
+import { getToken } from '@/utils/token';
 import { Navigate } from 'react-router-dom';
 
 function AuthRoute({ children }: any) {

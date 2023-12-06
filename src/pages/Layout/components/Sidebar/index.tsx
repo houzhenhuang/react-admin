@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, MenuProps } from 'antd';
-import { getMenus, addIconToMenu } from "../../../../api/menu";
+import { addIconToMenu } from "@/apis/menu";
 
-import './index.scss'
-import { getUserMenus } from '../../../../utils/menu';
+import './index.less'
+import { getUserMenus } from '@/utils/menu';
 
 const { Sider } = Layout;
 
-function AppLayoutSidebar(props: { collapsed: boolean }) {
-
-  const { collapsed } = props;
+function AppLayoutSidebar({ collapsed }: any) {
 
   const navigate = useNavigate();
 
@@ -19,7 +17,7 @@ function AppLayoutSidebar(props: { collapsed: boolean }) {
   useEffect(() => {
     const userMenus = getUserMenus();
     setMenus(addIconToMenu(userMenus));
-  });
+  }, []);
 
   const menuClick = (e: any) => {
     navigate(e.key)
