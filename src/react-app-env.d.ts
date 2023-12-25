@@ -1,5 +1,12 @@
 /// <reference types="react-scripts" />
 
+declare module '*.module.less' {
+  const classes: { readonly [key: string]: string };
+  export default classes;
+}
+
+declare module "./App.module.less"
+
 declare global {
 
   interface IResponse<T = {}> {
@@ -7,15 +14,6 @@ declare global {
     message?: string,
     code: string,
     data: T
-  }
-
-  interface AppRoute {
-    index?: boolean,
-    path: string,
-    fullPath: string,
-    isAuth: boolean,
-    element?: JSX.Element,
-    children?: AppRoute[]
   }
 
 }

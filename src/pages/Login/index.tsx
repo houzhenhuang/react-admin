@@ -3,7 +3,7 @@ import { doLogin } from '@/apis/login';
 import './login.less';
 import { setToken } from '@/utils/token';
 import { useNavigate } from "react-router-dom";
-import { getMenus } from '@/apis/menu';
+import { getMenus, UserMenu } from '@/apis/menu';
 import { setUserMenus } from '@/utils/menu';
 
 import loginBgVideo from "@/assets/videos/login-bg-video.mp4";
@@ -16,7 +16,7 @@ const Login: React.FC = () => {
         if (res.isSuccess) {
             setToken(res.data.token);
 
-            const menus = await getMenus();
+            const menus: UserMenu[] = await getMenus();
             setUserMenus(menus);
             navigate("/");
         } else {

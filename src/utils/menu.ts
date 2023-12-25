@@ -1,16 +1,18 @@
+import { UserMenu } from "@/apis/menu";
+
 const USER_MENUS_KEY = "user_menus";
 
-function setUserMenus(menus: any[]) {
+function setUserMenus(menus: UserMenu[]) {
   localStorage.setItem(USER_MENUS_KEY, JSON.stringify(menus))
 }
 
-function getUserMenus(): any[] {
+function getUserMenus(): UserMenu[] {
 
   const userMenus = localStorage.getItem(USER_MENUS_KEY);
   if (!userMenus) {
     return [];
   }
-  return JSON.parse(userMenus) as []
+  return JSON.parse(userMenus) as UserMenu[]
 }
 
 function removeUserMenus() {

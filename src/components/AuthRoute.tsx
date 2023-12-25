@@ -1,11 +1,15 @@
 import { getToken } from '@/utils/token';
 import { Navigate } from 'react-router-dom';
 
-function AuthRoute({ children }: any) {
+type AuthRouteProps = {
+  children?: React.ReactElement
+}
+
+function AuthRoute(props: AuthRouteProps) {
   const token = getToken();
 
   if (token) {
-    return <>{children}</>
+    return <>{props.children}</>
   } else {
     return <Navigate to={"/login"} replace />;
   }

@@ -14,6 +14,15 @@ import React from "react";
 // import Register from "@/pages/Register";
 const Register = React.lazy(() => require("@/pages/Register"));
 
+export interface AppRoute {
+  index?: boolean,
+  path: string,
+  fullPath: string,
+  isAuth: boolean,
+  element?: JSX.Element,
+  children?: AppRoute[]
+}
+
 const router: AppRoute[] = [
   {
     path: "/",

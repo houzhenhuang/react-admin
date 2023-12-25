@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.less';
 import { BrowserRouter } from 'react-router-dom';
 import DynamicRouter from './components/DynamicRouter';
 import { ConfigProvider } from 'antd';
@@ -14,7 +14,7 @@ function App() {
             theme={{
               token: {
                 // Seed Token，影响范围大
-                colorPrimary: '#f5222d',
+                // colorPrimary: styles.colorBgContainer,
                 // borderRadius: 0,
 
                 // 派生变量，影响范围小

@@ -1,12 +1,19 @@
 import { RouteObject, useRoutes } from "react-router-dom";
-import router from "../router";
+import router, { AppRoute } from "../router";
 import { getUserMenus } from "@/utils/menu";
 import { treeToList } from "@/utils/tree";
 
 export default function DynamicRouter() {
+
   const userMenus = treeToList(getUserMenus()).map(x => x.key);
 
-  const routesFilter = (routes: AppRoute[], userRoutes: AppRoute[] = []) => {
+  /**
+   * 
+   * @param routes 应用全部的路由集合
+   * @param userRoutes 用户路由集合
+   * @returns 
+   */
+  const routesFilter = (routes: AppRoute[], userRoutes: AppRoute[] = []): AppRoute[] => {
 
     for (const route of routes) {
       if (route.isAuth && !userMenus.includes(route.fullPath)) {
@@ -15,9 +22,8 @@ export default function DynamicRouter() {
 
       if (!route.children) {
         userRoutes.push(route);
-      }
-      else {
-        const nowRoute = { ...route, children: [] }
+      } else {
+        const nowRoute: AppRoute = { ...route, children: [] }
         userRoutes.push(nowRoute);
 
         routesFilter(route.children, nowRoute.children)

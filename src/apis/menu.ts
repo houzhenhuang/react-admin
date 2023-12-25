@@ -2,7 +2,15 @@ import React from "react";
 import * as Icons from '@ant-design/icons'
 const iconList: any = Icons
 
-export const getMenus = (): Promise<any[]> => {
+export interface UserMenu {
+  id: number,
+  label: string,
+  key: string,
+  icon?: string,
+  children?: UserMenu[]
+}
+
+export const getMenus = (): Promise<UserMenu[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
@@ -29,18 +37,22 @@ export const getMenus = (): Promise<any[]> => {
             //   key: "/user/tom"
             // },
             {
+              id: 6,
               label: "Bill",
               key: "/user/bill"
             },
             {
+              id: 7,
               label: "Alex1",
               key: "/user/alex1",
               children: [
                 {
+                  id: 8,
                   label: "Bill1",
                   key: "/user/bill1"
                 },
                 {
+                  id: 9,
                   label: "Alex1",
                   key: "/user/alex1"
                 }
@@ -55,10 +67,12 @@ export const getMenus = (): Promise<any[]> => {
           icon: "TeamOutlined",
           children: [
             {
+              id: 10,
               label: "Team 1",
               key: "6"
             },
             {
+              id: 11,
               label: "Team 2",
               key: "8"
             }
